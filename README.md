@@ -43,6 +43,10 @@ This repository provides a simple console app `chat.py`, built using Semantic Ke
 
 ![copilot-demo](docs/media/copilot-demo.png)
 
+  > **Information:**
+  > The app is inspired by [this](https://github.com/Azure-Samples/azure-search-openai-demo) OpenAI demo. Check out their code repo to learn more about the implementation pattern of Retrieval Augmented Generation (RAG). 
+ 
+
 ## How to Run the App
 
 Follow these steps to run the console application:
