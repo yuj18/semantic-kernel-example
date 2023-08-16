@@ -1,0 +1,4 @@
+{{$user_input}}
+
+Provide answer ONLY based on the SOURCES if provided.
+{{$search_result}}

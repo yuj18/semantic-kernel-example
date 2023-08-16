@@ -1,0 +1,21 @@
+{
+    "schema": 1,
+    "description": "This function returns a safety share message",
+    "type": "completion",
+    "completion": {
+      "max_tokens": 1024,
+      "temperature": 0.5,
+      "top_p": 1,
+      "presence_penalty": 0,
+      "frequency_penalty": 0
+    },
+    "input": {
+      "parameters": [
+        {
+          "name": "user_input",
+          "description": "New user question",
+          "defaultValue": ""
+        }
+      ]
+    }
+  }

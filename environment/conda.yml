@@ -1,0 +1,13 @@
+name: sk-example
+channels:
+  - conda-forge
+dependencies:
+  - python=3.8
+  - pip=22.1.2
+  - pip:
+    - semantic-kernel==0.3.8.dev0
+    - openai==0.27.8
+    - azure-search-documents==11.4.0b6
+    - azure-identity==1.13.0
+    - python-dotenv==1.0.0
+    - pypdf==3.11.0

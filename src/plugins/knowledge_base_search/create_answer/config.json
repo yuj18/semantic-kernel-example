@@ -1,0 +1,26 @@
+{
+    "schema": 1,
+    "description": "Create answer based on search result and user input",
+    "type": "completion",
+    "completion": {
+      "max_tokens": 1024,
+      "temperature": 0,
+      "top_p": 1,
+      "presence_penalty": 0,
+      "frequency_penalty": 0
+    },
+    "input": {
+      "parameters": [
+        {
+          "name": "search_result",
+          "description": "Search result",
+          "defaultValue": ""
+        },
+        {
+          "name": "user_input",
+          "description": "New user question",
+          "defaultValue": ""
+        }
+      ]
+    }
+  }
