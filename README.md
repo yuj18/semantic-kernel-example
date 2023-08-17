@@ -1,6 +1,6 @@
 # Semantic Kernel Example
 
-Welcome to the Semantic Kernel Example repository! Here, you'll find a lightweight Python demo designed to facilitate the understanding of the core concept that underlies [Semantic Kernel](https://github.com/microsoft/semantic-kernel). Before we delve into the code, let's start with a brief introduction to Semantic Kernel.
+Welcome to the Semantic Kernel Example repository! Here, you'll find a lightweight Python demo designed to facilitate the learning of the core concept that underlies [Semantic Kernel](https://github.com/microsoft/semantic-kernel). Before we delve into the code, let's start with a brief introduction to Semantic Kernel.
 
 # What is Semantic Kernel? 
 
