@@ -28,11 +28,6 @@ class AzureCognitiveSearch:
         self.content_field = content_field or config["AZURE_SEARCH_CONTENT_FIELD"]
         self.reference_field = reference_field or config["AZURE_SEARCH_REFERENCE_FIELD"]
         self.top = top
-        self.client = SearchClient(
-            endpoint=self.endpoint,
-            index_name=self.index_name,
-            credential=AzureKeyCredential(self.key),
-        )
         # OpenAI for vector search
         openai.api_base = config["AZURE_OPENAI_ENDPOINT"]
         openai.api_version = "2022-12-01"
@@ -42,7 +37,16 @@ class AzureCognitiveSearch:
 
         print("Loaded Azure Cognitive Search Plugin")
 
+    def get_search_client(self):
+        """Create a SearchClient to query the index."""
+        return SearchClient(
+            endpoint=self.endpoint,
+            index_name=self.index_name,
+            credential=AzureKeyCredential(self.key),
+        )
+
     async def create_embedding(self, text, openai_embedding_model):
+        """Create an embedding for a given text using OpenAI embedding model."""
         try:
             embedded_text = (
                 await openai.Embedding.acreate(
@@ -71,20 +75,23 @@ class AzureCognitiveSearch:
         embedded_query = await self.create_embedding(
             query, self._openai_embedding_model
         )
-        r = await self.client.search(
-            search_text=query,
-            top=self.top,
-            vector_fields="content_vector",
-            vector=embedded_query,
-            top_k=10,
-        )
-        results = [
-            doc[self.reference_field]
-            + ": "
-            + await self.remove_newlines(doc[self.content_field])
-            async for doc in r
-        ]
-        content = "\n".join(results)
+        search_client = self.get_search_client()
+        async with search_client:
+            r = await search_client.search(
+                search_text=query,
+                top=self.top,
+                vector_fields="content_vector",
+                vector=embedded_query,
+                top_k=10,
+            )
+            results = [
+                doc[self.reference_field]
+                + ": "
+                + await self.remove_newlines(doc[self.content_field])
+                async for doc in r
+            ]
+            content = "\n".join(results)
+
         context["search_result"] = "\nSOURCES:\n" + content
 
         return content
